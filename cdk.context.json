@@ -1,0 +1,14 @@
+{
+  "hosted-zone:account=747340109238:domainName=jeremyritchie.com:region=us-east-1": {
+    "Id": "/hostedzone/Z0453758R1VIMHRJ1JIT",
+    "Name": "jeremyritchie.com."
+  },
+  "availability-zones:account=747340109238:region=us-east-1": [
+    "us-east-1a",
+    "us-east-1b",
+    "us-east-1c",
+    "us-east-1d",
+    "us-east-1e",
+    "us-east-1f"
+  ]
+}
