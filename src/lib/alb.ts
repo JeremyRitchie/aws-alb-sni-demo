@@ -80,7 +80,6 @@ export class SNIALBStack extends Stack {
         action: elbv2.ListenerAction.forward([redTargetGroup]),
     });
 
-    // create route53 records
     new route53.ARecord(this, 'BlueRecord', {
         zone: props.baseStack.hostedZone,
         target: route53.RecordTarget.fromAlias(new route53Targets.LoadBalancerTarget(alb)),

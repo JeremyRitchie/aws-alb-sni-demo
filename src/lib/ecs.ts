@@ -15,7 +15,7 @@ export class SNIECSStack extends Stack {
   service: ecs.FargateService;
   constructor(scope: Construct, id: string, props: SNIECSStackProps) {
     super(scope, id, props);
-    // create ecs cluster
+
     const cluster = new ecs.Cluster(this, 'Cluster', {
         vpc: props.baseStack.vpc,
     });
@@ -29,7 +29,7 @@ export class SNIECSStack extends Stack {
         }
     });
 
-    taskDefinition.executionRole?.attachInlinePolicy(new iam.Policy(this, 'userpool-policy', {
+    taskDefinition.executionRole?.attachInlinePolicy(new iam.Policy(this, 'task-policy', {
         statements: [new iam.PolicyStatement({
             actions: [
                 'ecr:GetAuthorizationToken',

@@ -17,12 +17,10 @@ export class SNIBaseStack extends Stack {
   constructor(scope: Construct, id: string, props: SNIBaseStackProps) {
     super(scope, id, props);
 
-    // import hosted zone
     this.hostedZone = route53.HostedZone.fromLookup(this, 'HostedZone', {
         domainName: 'jeremyritchie.com',
     });
 
-    // create two acm certs
     this.redCert = new acm.Certificate(this, 'Certificate1', {
         domainName: 'red.jeremyritchie.com',
         validation: acm.CertificateValidation.fromDns(this.hostedZone),
@@ -33,7 +31,6 @@ export class SNIBaseStack extends Stack {
         validation: acm.CertificateValidation.fromDns(this.hostedZone),
     });
 
-    // create one vpc
     this.vpc = new ec2.Vpc(this, 'VPC', {
         maxAzs: 2,
         createInternetGateway: true,
