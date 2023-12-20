@@ -1,5 +1,7 @@
 import { App } from 'aws-cdk-lib';
-import { SNIApplicationStack } from './lib/app';
+import { SNIECSStack } from './lib/ecs';
+import { SNIBaseStack } from './lib/base';
+import { SNIALBStack } from './lib/alb';
 
 // for development, use account/region from cdk cli
 const devEnv = {
@@ -9,6 +11,16 @@ const devEnv = {
 
 const app = new App();
 
-new SNIApplicationStack(app, 'aws-alb-sni-demo-dev', { env: devEnv });
+const baseStack = new SNIBaseStack(app, 'base-ani-demo', { env: devEnv });
+const ecsStack = new SNIECSStack(app, 'ecs-ani-demo', {
+   env: devEnv,
+   baseStack: baseStack,
+   });
+new SNIALBStack(app, 'alb-ani-demo', {
+  env: devEnv,
+  baseStack: baseStack,
+  ecsStack: ecsStack,
+});
+
 
 app.synth();
