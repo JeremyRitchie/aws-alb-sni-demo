@@ -18,5 +18,6 @@ const project = new awscdk.AwsCdkTypeScriptApp({
     '@types/aws-lambda',
   ],             /* Build dependencies for this module. */
   // packageName: undefined,  /* The "name" in package.json. */
+  depsUpgrade: false
 });
 project.synth();
